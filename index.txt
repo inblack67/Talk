@@ -1,0 +1,32 @@
+  def change do
+    create table(:messages) do
+      add :content, :string, null: false
+      add :room_id, null: false, references(:rooms, on_delete: :delete_all)
+
+      timestamps()
+    end
+
+    create index(:messages, [:room_id])
+  end
+
+
+
+
+defmodule Talk.Chat.Message do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "messages" do
+    field :content, :string
+    field :room_id, :id
+
+    timestamps()
+  end
+
+  @doc false
+  def changeset(message, attrs) do
+    message
+    |> cast(attrs, [:content])
+    |> validate_required([:content, :room_id])
+  end
+end

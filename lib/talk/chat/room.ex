@@ -1,12 +1,14 @@
 defmodule Talk.Chat.Room do
   use Ecto.Schema
   import Ecto.Changeset
-  require Protocol
+  alias Talk.Chat.Message
 
-  @derive {Jason.Encoder, except: [:__meta__]}
+  @derive {Jason.Encoder, except: [:__meta__, :messages]}
   schema "rooms" do
     field :description, :string
     field :name, :string
+
+    has_many(:messages, Message)
 
     timestamps()
   end
