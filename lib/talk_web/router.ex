@@ -7,7 +7,9 @@ defmodule TalkWeb.Router do
 
   scope "/api", TalkWeb do
     pipe_through :api
+    get "/greet", RoomController, :greet
     get "/rooms", RoomController, :get_all
+    post "/rooms/add", RoomController, :add
   end
 
   # Enables LiveDashboard only for development
