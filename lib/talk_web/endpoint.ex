@@ -10,6 +10,10 @@ defmodule TalkWeb.Endpoint do
     signing_salt: "ZBMVqbUX"
   ]
 
+  socket "/socket", TalkWeb.UserSocket,
+    websocket: true,
+    longpoll: false
+
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
@@ -44,5 +48,6 @@ defmodule TalkWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug CORSPlug
   plug TalkWeb.Router
 end
