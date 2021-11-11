@@ -12,7 +12,7 @@ config :talk,
 
 # Configures the endpoint
 config :talk, TalkWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: "talk.gigalixirapp.com", port: 443],
   render_errors: [view: TalkWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: Talk.PubSub,
   live_view: [signing_salt: "o42f1f8B"]
