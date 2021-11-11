@@ -11,7 +11,6 @@ defmodule TalkWeb.Router do
     get "/rooms", RoomController, :get_all
     post "/rooms/add", RoomController, :add
     get "/room/:id/messages", MessageController, :get_all
-    post "/room/:id/messages", MessageController, :add
   end
 
   # Enables LiveDashboard only for development

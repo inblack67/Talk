@@ -116,11 +116,16 @@ defmodule Talk.Chat do
 
   """
   def list_messages do
-    Repo.all(Message)
+    limit = 10
+
+    from(m in Message, limit: ^limit)
+    |> Repo.all()
   end
 
   def list_messages_by_room(room_id) do
-    from(m in Message, where: m.room_id == ^room_id)
+    limit = 10
+
+    from(m in Message, where: m.room_id == ^room_id, limit: ^limit)
     |> Repo.all()
   end
 

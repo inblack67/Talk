@@ -6,7 +6,7 @@ defmodule TalkWeb.RoomChannel do
 
   def join("room:" <> room_id, _payload, socket) do
     IO.inspect("joining channel")
-    {:ok, %{messages: Chat.list_messages_by_room(room_id)}, assign(socket, :room_id, room_id)}
+    {:ok, assign(socket, :room_id, room_id)}
   end
 
   def handle_in("new_message", %{"payload" => %{"content" => content}}, socket) do
@@ -19,10 +19,10 @@ defmodule TalkWeb.RoomChannel do
         {:noreply, socket}
 
       {:error, %Ecto.Changeset{} = _changeset} ->
-        {:noreply, socket}
+        {:error, socket}
 
       _ ->
-        {:noreply, socket}
+        {:error, socket}
     end
   end
 
