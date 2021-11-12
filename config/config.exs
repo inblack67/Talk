@@ -15,7 +15,8 @@ config :talk, TalkWeb.Endpoint,
   url: [host: "localhost"],
   render_errors: [view: TalkWeb.ErrorView, accepts: ~w(json), layout: false],
   pubsub_server: Talk.PubSub,
-  live_view: [signing_salt: "o42f1f8B"]
+  live_view: [signing_salt: "o42f1f8B"],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]]
 
 # Configures the mailer
 #
